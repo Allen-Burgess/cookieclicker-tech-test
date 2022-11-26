@@ -1,10 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OpenQA.Selenium;
+using SeleniumExtras.PageObjects;
 
 namespace AireLogic.CookieClicker.Tests.POM
 {
-    class BasePom
+    abstract class BasePom
     {
+        protected IWebDriver Driver;
+
+        public BasePom(IWebDriver driver)
+        {
+            Driver = driver;
+            PageFactory.InitElements(Driver, this);
+
+        }
     }
 }
