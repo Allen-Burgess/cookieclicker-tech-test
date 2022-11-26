@@ -14,7 +14,6 @@ namespace AireLogic.CookieClicker.Tests.POM
         [FindsBy(How = How.XPath, Using = "//button[text()='Start!']")]
         public IWebElement StartButton { get; set; }
 
-
         public void EnterName(string name)
         {
             NameTextField.SendKeys(name);
