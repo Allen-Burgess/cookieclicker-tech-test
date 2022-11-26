@@ -11,6 +11,7 @@ namespace AireLogic.CookieClicker.Tests.POM
     {
         public GamePage(IWebDriver driver) : base(driver) { }
 
+
         [FindsBy(How = How.CssSelector, Using = "h1 a")]
         public IWebElement TitleLink { get; set; }
 
@@ -80,6 +81,11 @@ namespace AireLogic.CookieClicker.Tests.POM
             Assert.True(moneyAfter.Equals(moneyBefore - buyPrice),
                 $"Invalid value deducted purchasing factory - expected: {(moneyBefore - buyPrice)}, actual: {this.Money}");
 
+        }
+
+        public void ReturnToLandingPage()
+        {
+            TitleLink.Click();
         }
 
         public void SellCookies(int cookies)

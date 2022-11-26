@@ -1,6 +1,9 @@
 ﻿using AireLogic.CookieClicker.Tests.Helpers;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System;
+using System.Linq;
 
 namespace AireLogic.CookieClicker.Tests.POM
 {
@@ -19,9 +22,26 @@ namespace AireLogic.CookieClicker.Tests.POM
             NameTextField.SendKeys(name);
         }
 
+        public void OpenExistingUser(string username)
+        {
+            var users = HighScoreUsers.GetList(Driver, Driver);
+            users.Single(user => user.Username.Text.Equals(username)).Username.Click();
+        }
+
         public void StartGame()
         {
             StartButton.Click();
+        }
+
+        public void VerifyHighScore(string username, int score)
+        {
+            var users = HighScoreUsers.GetList(Driver, Driver);
+            // Gets the user with the same username
+            var user = users.Single(user => user.Username.Text.Equals(username));
+
+            Assert.True(Convert.ToInt32(user.Score.Text).Equals(score),
+                $"Invalid score displayed for user $'{username}' - expected: {score}, actual: {user.Score.Text}");
+
         }
 
         public void WaitForPageToLoad()
