@@ -5,6 +5,10 @@ namespace AireLogic.CookieClicker.Tests.Scripts
 {
     class GameTests : TestConfig
     {
+        [Test]
+        public void StartNewGame()
+        {
 
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace AireLogic.CookieClicker.Tests.Config
         {
             var driverFactory = new DriverFactory();
             Driver = driverFactory.InitDriver(TestContext.Parameters["BROWSER"]);
+            Driver.Url = TestContext.Parameters["URL"];
         }
 
         [TearDown]
