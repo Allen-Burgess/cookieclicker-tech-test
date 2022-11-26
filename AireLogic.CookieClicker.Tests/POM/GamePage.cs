@@ -43,7 +43,7 @@ namespace AireLogic.CookieClicker.Tests.POM
 
 
 
-    public void AddCookie(bool verifyIncrement = false)
+        public void AddCookie(bool verifyIncrement = false)
         {
             // Records the cookie balance before and after
             int cookiesBefore = Convert.ToInt32(CookieBalance.Text.Trim());
@@ -59,6 +59,29 @@ namespace AireLogic.CookieClicker.Tests.POM
                     $"Cookies did not increment as expected after adding a cookie - expected cookies: {cookiesBefore + 1}, actual: {cookiesAfter}");
         }
 
+        public void BuyFactories(int factories)
+        {
+            double moneyBefore = Convert.ToDouble(Money.Text);
+            int factoriesBefore = Convert.ToInt32(Factories.Text);
+
+            BuyFactoriesField.SendKeys(factories.ToString());
+            BuyFactoriesButton.Click();
+
+            Thread.Sleep(250); // Gives time for fields to update
+
+            double moneyAfter = Convert.ToDouble(Money.Text);
+            int factoriesAfter = Convert.ToInt32(Factories.Text);
+
+            double buyPrice = factories * 3.00;
+
+            Assert.True(factoriesAfter.Equals(factoriesBefore + factories),
+                $"Invalid number of factories - expected: {factoriesBefore + factories}, actual: {factoriesAfter}");
+
+            Assert.True(moneyAfter.Equals(moneyBefore - buyPrice),
+                $"Invalid value deducted purchasing factory - expected: {(moneyBefore - buyPrice)}, actual: {this.Money}");
+
+        }
+
         public void SellCookies(int cookies)
         {
             double moneyBefore = Convert.ToDouble(Money.Text);
@@ -72,7 +95,7 @@ namespace AireLogic.CookieClicker.Tests.POM
             double sellPrice = cookies * 0.25;
 
             Assert.True(moneyAfter.Equals(moneyBefore + sellPrice), 
-                $"Invalid cash balance after selling cookie - actual: {moneyAfter.ToString()}, expected: {moneyBefore + sellPrice}");
+                $"Invalid cash balance after selling cookie - actual: {moneyAfter}, expected: {moneyBefore + sellPrice}");
         }
 
         public void VerifyWelcomeMessage(string username)

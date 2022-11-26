@@ -61,5 +61,27 @@ namespace AireLogic.CookieClicker.Tests.Scripts
             gamePage.SellCookies(1);
 
         }
+
+        /// <summary>
+        /// Accumulates money and verifies the user can buy a factory
+        /// </summary>
+        [Test]
+        public void BuyFactoriesTest()
+        {
+            var landingPage = new LandingPage(Driver);
+            var gamePage = new GamePage(Driver);
+            var username = TestUtils.GenerateTestName();
+
+            landingPage.EnterName(username);
+            landingPage.StartGame();
+            gamePage.WaitForPageToLoad();
+
+            for (int i = 0; i < 15; i++)
+                gamePage.AddCookie();
+
+            // For purposes of this tech test I'm adding a work around for cookie min being 1
+            gamePage.SellCookies(12);
+            gamePage.BuyFactories(1);
+        }
     }
 }
