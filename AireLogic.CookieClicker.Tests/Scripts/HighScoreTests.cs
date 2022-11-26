@@ -2,7 +2,7 @@
 
 namespace AireLogic.CookieClicker.Tests.Scripts
 {
-    class UserTests : TestConfig
+    class HighScoreTests : TestConfig
     {
 
     }
