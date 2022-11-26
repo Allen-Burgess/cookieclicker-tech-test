@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <TestRunParameters>
+    <Parameter name="BROWSER" value="chrome"/>
+    <Parameter name="URL" value="https://allen-burgess-2022-11-25.cookieclickertechtest.airelogic.com/"/>
+  </TestRunParameters>
+</RunSettings>
